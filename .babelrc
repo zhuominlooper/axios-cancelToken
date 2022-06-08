@@ -1,0 +1,7 @@
+//此文件主要用于把高级的js语法(es5+)转换成es5
+{
+  "presets": [
+    "@babel/preset-env" //es6转es5
+  ],
+  "sourceType": "unambiguous" //由于加了@babel转化器，webpack会默认使用的es6导入，但是代码中使用的是nodejs语法，就会有冲突，故须加上这个配置
+}

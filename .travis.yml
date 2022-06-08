@@ -1,0 +1,26 @@
+# 此文件为自动化CI脚本
+# 当前最会提交或合并main主干时跑CI
+# 步骤：github合并到main时候自动触发构建,安装依赖，跑单元测试，跑eslint，自动打包发布
+
+language: node_js
+node_js:
+  - 14
+branches:
+  # 只在main分支push的时候触发
+  only:
+    - main
+cache:
+  directories:
+    - node_modules
+before_install:
+  - npm install npm-cli-login -S
+  - NPM_USER=${npm_user} NPM_PASS=${npm_pass} NPM_EMAIL=${npm_email} npm-cli-login
+install:
+  - npm install
+scripts:
+  - npm cache clean --force
+  - npm run lint
+  - npm run test
+  - npm run test:coveralls
+  - npm run build
+  - npm publish
