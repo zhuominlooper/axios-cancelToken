@@ -19,8 +19,5 @@ install:
   - npm install
 scripts:
   - npm cache clean --force
-  - npm run lint
-  - npm run test
-  - npm run test:coveralls
-  - npm run build
+  - npm run build umd:min
   - npm publish
